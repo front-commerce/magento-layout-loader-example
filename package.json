@@ -4,8 +4,7 @@
   "private": true,
   "dependencies": {
     "@magento/peregrine": "^0.1.5-alpha",
-    "@magento/pwa-buildpack":
-      "github:magento-research/pwa-buildpack#a5517415d6a571aa92bde32ead3f232f7186e833",
+    "@magento/pwa-buildpack": "github:magento-research/pwa-buildpack",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -49,7 +48,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "postinstall":
+      "rm -rf node_modules/@magento/pwa-buildpack && cd node_modules/@magento && git clone git@github.com:magento-research/pwa-buildpack.git && cd pwa-buildpack && git checkout 7c529f6c0bbcfe5fb2af113295a0b92ad8605dfb"
   },
   "jest": {
     "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
