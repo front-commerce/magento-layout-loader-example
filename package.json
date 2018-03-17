@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@magento/peregrine": "^0.1.5-alpha",
+    "@magento/pwa-buildpack":
+      "github:magento-research/pwa-buildpack#a5517415d6a571aa92bde32ead3f232f7186e833",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",

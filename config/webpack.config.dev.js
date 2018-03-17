@@ -143,15 +143,34 @@ module.exports = {
           {
             test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
-            loader: require.resolve("babel-loader"),
-            options: {
-              // This is a feature of `babel-loader` for webpack (not Babel itself).
-              // It enables caching results in ./node_modules/.cache/babel-loader/
-              // directory for faster rebuilds.
-              cacheDirectory: true,
-              babelrc: false,
-              presets: [require.resolve("babel-preset-react-app")]
-            }
+            use: [
+              {
+                loader: require.resolve(
+                  "@magento/pwa-buildpack/src/magento-layout-loader"
+                ),
+                options: {
+                  config: {
+                    "home.remove": [
+                      {
+                        operation: "removeContainer",
+                        targetContainer: "home.remove"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                loader: require.resolve("babel-loader"),
+                options: {
+                  // This is a feature of `babel-loader` for webpack (not Babel itself).
+                  // It enables caching results in ./node_modules/.cache/babel-loader/
+                  // directory for faster rebuilds.
+                  cacheDirectory: true,
+                  babelrc: false,
+                  presets: [require.resolve("babel-preset-react-app")]
+                }
+              }
+            ]
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
